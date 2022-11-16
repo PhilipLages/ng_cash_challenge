@@ -53,6 +53,7 @@ services:
       - 3001:3001
 
     environment:
+      POSTGRES_HOST: db
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
       POSTGRES_DB: NgCashDB
@@ -68,10 +69,11 @@ services:
     restart: on-failure
 
     environment:
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: 'password'
 
     ports:
-      - 8080:8080
+      - 5432:5432
     networks:
       - ng_cash_challenge_net
 
