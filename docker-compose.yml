@@ -1,0 +1,80 @@
+version: '3'
+
+services:
+  frontend:
+    image: node:16.14
+
+    #configs adicionais
+    container_name: ng_cash_challenge_frontend
+    working_dir: /app
+    restart: on-failure
+
+    # iterativo
+    stdin_open: true
+    tty: true
+
+    # terminal do container
+    command: bash
+
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./front-end:/app
+
+    environment:
+      - API_HOST=backend
+      - API_PORT=3001
+
+    networks:
+      - ng_cash_challenge_net
+
+  backend:
+    image: node:16.14
+
+    #configs adicionais
+    container_name: ng_cash_challenge_backend
+    working_dir: /app
+    restart: on-failure
+
+    #iterativo
+    stdin_open: true
+    tty: true
+
+    #terminal do container
+    command: bash 
+
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+    ports:
+      - 3001:3001
+
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: NgCashDB
+
+    networks:
+      - ng_cash_challenge_net
+
+  db:
+    image: postgres:15.1
+
+    #configs adicionais
+    container_name: ng_cash_challenge_db
+    restart: on-failure
+
+    environment:
+      POSTGRES_PASSWORD: 'password'
+
+    ports:
+      - 8080:8080
+    networks:
+      - ng_cash_challenge_net
+
+networks:
+  ng_cash_challenge_net:    
+    driver: bridge
