@@ -1,18 +1,14 @@
 import { Request, Response } from "express";
-import { CreateUser } from "../services/user.service";
+import  CreateUserService from "../services/user.service";
 
 export class CreateUserController {
     async createUser (req: Request, res: Response) {
         const { username, password } = req.body;
 
-        const createUser = new CreateUser();
+        const createUser = new CreateUserService();
 
-        const result = await createUser.execute({ username, password });
-
-        if (!result) {
-            return res.status(404).json({ message: "User not found" });
-        }
-
-        return res.status(201).json(result);
+       const { status, result } = await createUser.execute(username, password);
+    
+        return res.status(status).json(result);            
     };
-}
+};

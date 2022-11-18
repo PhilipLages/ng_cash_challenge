@@ -1,33 +1,21 @@
-import { User } from "@prisma/client";
-import { prisma } from "../../../prisma/client";
-import { CreateUserTYPES } from "../interfaces/CreateUserTYPES";
+import CreateUserModel from '../models/user.model';
 import bcrypt from 'bcrypt';
-import { AppError } from "../../errors/appError";
+import { prisma } from '../../../prisma/client';
 
-export class CreateUser {
-    async execute({ username, password }: CreateUserTYPES): Promise<User> {
-        // verifica se usuário já existe
-        const doesUserExists = await prisma.user.findUnique({ where: { username }});
+export default class CreateUser {
+    async execute(username: string, password: string ) {
+        const userExists = await prisma.user.findUnique({ where: { username } });
 
-        if (doesUserExists) {
-            // error
-            throw new AppError('User already exists');
+        const hashedPassword = await bcrypt.hash(password, 10);       
+
+        if(userExists) {
+            return { status: 400, result: { message: 'User already exists' } };
         }
+        
+        const createUser = new CreateUserModel();
 
-        const balance = 100.00;
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newAccount = await prisma.account.create({ data: { balance } });
-
-        const data = {
-            username,
-            password: hashedPassword,
-            accountId: newAccount.id
-        };
-
-        // cria conta e usuário
-        const newUser = await prisma.user.create({ data });
-
-        return newUser;
+        const result = await createUser.execute({ username, password: hashedPassword })
+        
+        return { status: 201, result };
     };
 };
