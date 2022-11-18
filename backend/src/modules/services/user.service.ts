@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 import { CreateUserTYPES } from "../interfaces/CreateUserTYPES";
 import bcrypt from 'bcrypt';
+import { AppError } from "../../errors/appError";
 
 export class CreateUser {
     async execute({ username, password }: CreateUserTYPES): Promise<User> {
@@ -10,10 +11,13 @@ export class CreateUser {
 
         if (doesUserExists) {
             // error
+            throw new AppError('User already exists');
         }
 
+        const balance = 100.00;
+
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newAccount = await prisma.account.create({ data: { balance: 100.00 } });
+        const newAccount = await prisma.account.create({ data: { balance } });
 
         const data = {
             username,

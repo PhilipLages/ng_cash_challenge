@@ -18,18 +18,18 @@ model User {
 
   account Account @relation(fields: [accountId], references: [id])
 
-  @@map("users")
+  @@map("Users")
 }
 
 model Account {
   id      Int     @id @default(autoincrement())
-  balance Decimal
+  balance Decimal @db.Decimal(10,2)
 
   user     User?
   cash_out Transaction[] @relation("debited")
   cash_in  Transaction[] @relation("credited")
 
-  @@map("accounts")
+  @@map("Accounts")
 }
 
 model Transaction {
@@ -42,5 +42,5 @@ model Transaction {
   debited  Account @relation("debited", fields: [creditedAccountId], references: [id])
   credited Account @relation("credited", fields: [debitedAccountId], references: [id])
 
-  @@map("transactions")
+  @@map("Transactions")
 }

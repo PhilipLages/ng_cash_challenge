@@ -9,6 +9,10 @@ export class CreateUserController {
 
         const result = await createUser.execute({ username, password });
 
+        if (!result) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
         return res.status(201).json(result);
     };
 }
