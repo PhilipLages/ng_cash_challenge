@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 import { CreateUserTYPES } from "./interfaces/CreateUserTYPES";
 
-export default class CreateUserModel {
+export class CreateUserModel {
     async execute({ username, password }: CreateUserTYPES): Promise<User> {
         const balance = 100.00;
 

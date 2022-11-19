@@ -1,4 +1,4 @@
-import CreateUserModel from '../models/createUser.model';
+import { CreateUserModel } from '../models/createUser.model';
 import bcrypt from 'bcrypt';
 import { prisma } from '../../../prisma/client';
 import statusCodes from '../../utils/statusCodes';

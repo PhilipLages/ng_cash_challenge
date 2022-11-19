@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { body } from "./user.joi.rules";
+import { body } from "./joi/user.joi.rules";
 
 export const validateUser = (req: Request, res: Response, next: NextFunction) => {
     const user = req.body;
