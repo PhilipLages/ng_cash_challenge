@@ -1,13 +1,14 @@
 import express from 'express';
-import { CreateUserController } from '../modules/controllers/createUser.controller';
+import { UserController } from '../modules/controllers/user.controller';
 import { LoginController } from '../modules/controllers/login.controller';
 import { authenticateLogin } from '../modules/middlewares/login.middlewares';
 import { validateUser } from '../modules/middlewares/user.middlewares';
 
-const { createUser } = new CreateUserController();
-const { login } = new LoginController()
+const userController = new UserController();
+const loginController = new LoginController();
 
 export const usersRouter = express.Router();
 
-usersRouter.post('/login', authenticateLogin, login);
-usersRouter.post('/signup', validateUser, createUser);
+usersRouter.post('/login', authenticateLogin, loginController.login);
+usersRouter.post('/signup', validateUser, userController.createUser);
+usersRouter.get('/:id', userController.getUserAccount);

@@ -6,20 +6,21 @@ import JWT_SECRET from '../../secret';
 
 const { NOT_FOUND, OK, ANAUTHORIZED } = statusCodes;
 
-export default class LoginService {
-    async execute(username: string, password: string) {
-        const login = new LoginModel();
+const loginModel = new LoginModel();
 
-        const result = await login.execute({ username, password });
+export default class LoginService {
+    async login(username: string, password: string) {
+
+        const result = await loginModel.login({ username, password });
 
         if (!result) {
-            return { status: NOT_FOUND, result: { message: 'user not found' } };
+            return { status: NOT_FOUND, result: { message: 'User not found' } };
         }
 
         const isMatch = bcrypt.compareSync(password, result.password);
 
         if (!isMatch) {
-            return { status: ANAUTHORIZED, result: { message: 'invalid password' }};
+            return { status: ANAUTHORIZED, result: { message: 'Invalid password' }};
         }
 
         const user = {
