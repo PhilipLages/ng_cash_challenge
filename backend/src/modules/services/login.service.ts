@@ -1,6 +1,8 @@
 import LoginModel from '../models/login.model';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import statusCodes from '../../utils/statusCodes';
+import secret from '../../secret';
 
 const { NOT_FOUND, OK, ANAUTHORIZED } = statusCodes;
 
@@ -20,6 +22,18 @@ export default class LoginService {
             return { status: ANAUTHORIZED, result: { message: 'invalid password' }};
         }
 
-        return { status: OK, result: { message: 'successfully logged in' } };
+        const user = {
+            id: result.id,
+            username: result.username
+        }
+
+        const token = jwt.sign({ 
+            id: result.id?.toString(),  
+            username: result.username,
+        }, secret.JWT_SECRET, {
+            expiresIn: '1 day',
+        });
+
+        return { status: OK, result: { user, token } };
     };
 };
