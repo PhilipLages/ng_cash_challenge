@@ -21,7 +21,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./front-end:/app
+      - ./frontend:/app
 
     environment:
       - API_HOST=backend
