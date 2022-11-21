@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --transpile-only src/server.ts"
+    "dev": "nodemon --transpile-only src/server.ts",
+    "migration": "prisma migrate dev"
   },
   "keywords": [],
   "author": "[Philip Lages] psilvaelages@gmail.com",

@@ -1,29 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `accounts` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `transactions` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `users` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "transactions" DROP CONSTRAINT "transactions_creditedAccountId_fkey";
-
--- DropForeignKey
-ALTER TABLE "transactions" DROP CONSTRAINT "transactions_debitedAccountId_fkey";
-
--- DropForeignKey
-ALTER TABLE "users" DROP CONSTRAINT "users_accountId_fkey";
-
--- DropTable
-DROP TABLE "accounts";
-
--- DropTable
-DROP TABLE "transactions";
-
--- DropTable
-DROP TABLE "users";
-
 -- CreateTable
 CREATE TABLE "Users" (
     "id" SERIAL NOT NULL,
@@ -37,7 +11,7 @@ CREATE TABLE "Users" (
 -- CreateTable
 CREATE TABLE "Accounts" (
     "id" SERIAL NOT NULL,
-    "balance" DECIMAL(3,2) NOT NULL,
+    "balance" DECIMAL(10,2) NOT NULL,
 
     CONSTRAINT "Accounts_pkey" PRIMARY KEY ("id")
 );
@@ -47,7 +21,7 @@ CREATE TABLE "Transactions" (
     "id" SERIAL NOT NULL,
     "debitedAccountId" INTEGER NOT NULL,
     "creditedAccountId" INTEGER NOT NULL,
-    "value" DECIMAL(65,30) NOT NULL,
+    "value" DECIMAL(10,2) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Transactions_pkey" PRIMARY KEY ("id")

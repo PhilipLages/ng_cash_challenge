@@ -19,4 +19,13 @@ export class UserController {
 
         return res.status(status).json(result);
     };
+
+    async createTransaction (req: Request, res: Response) {
+        const { id } = req.params;
+        const { username, value } = req.body;
+
+        const { status, result } = await userService.createTransaction(Number(id), username, value);
+
+        return res.status(status).json(result);
+    };
 };

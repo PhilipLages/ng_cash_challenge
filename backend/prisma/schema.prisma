@@ -26,8 +26,8 @@ model Account {
   balance Decimal @db.Decimal(10, 2)
 
   user     User?
-  cash_out Transaction[] @relation("debited")
-  cash_in  Transaction[] @relation("credited")
+  debited Transaction[] @relation("debited")
+  credited  Transaction[] @relation("credited")
 
   @@map("Accounts")
 }
@@ -36,11 +36,11 @@ model Transaction {
   id                Int   @id @default(autoincrement())
   debitedAccountId  Int
   creditedAccountId Int
-  value             Decimal
+  value             Decimal @db.Decimal(10,2)
   createdAt         DateTime @default(now())
 
-  debited  Account @relation("debited", fields: [creditedAccountId], references: [id])
-  credited Account @relation("credited", fields: [debitedAccountId], references: [id])
+  debited Account @relation("credited", fields: [creditedAccountId], references: [id])
+  credited  Account @relation("debited", fields: [debitedAccountId], references: [id])
 
   @@map("Transactions")
 }

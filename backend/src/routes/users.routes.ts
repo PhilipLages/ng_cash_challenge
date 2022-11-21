@@ -9,6 +9,10 @@ const loginController = new LoginController();
 
 export const usersRouter = express.Router();
 
-usersRouter.post('/login', authenticateLogin, loginController.login);
-usersRouter.post('/signup', validateUser, userController.createUser);
 usersRouter.get('/:id', userController.getUserAccount);
+
+usersRouter.post('/:id/transactions', userController.createTransaction);
+
+usersRouter.post('/signup', validateUser, userController.createUser);
+
+usersRouter.post('/login', authenticateLogin, loginController.login);

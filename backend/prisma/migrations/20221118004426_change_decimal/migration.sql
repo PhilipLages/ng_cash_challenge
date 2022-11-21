@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Accounts" ALTER COLUMN "balance" SET DATA TYPE DECIMAL(10,2);
