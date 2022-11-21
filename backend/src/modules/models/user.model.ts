@@ -1,8 +1,9 @@
-import { Account, Transaction, User } from "@prisma/client";
+import { Transaction, User } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 import { AccountTypes } from "./interfaces/AccountTypes";
 import { CreateUserTYPES } from "./interfaces/CreateUserTypes";
-import { transactionsTypes } from "./interfaces/transactionsTypes";
+import { CreatetransactionsTypes } from "./interfaces/CreateTransactionsTypes";
+import { TransactionsTypes } from "./interfaces/TransactionsTypes";
 
 export class UserModel {
     async createUser ({ username, password }: CreateUserTYPES): Promise<User> {
@@ -29,7 +30,7 @@ export class UserModel {
         return { id, balance: userAccount?.balance };
     };
 
-    async createTransaction ({ id, username, value }: transactionsTypes) {
+    async createTransaction ({ id, username, value }: CreatetransactionsTypes) {
         const debitedUser = await prisma.user.findUnique({ where: { id } });
         const creditedUser = await prisma.user.findUnique({ where: { username } });
 
@@ -45,26 +46,36 @@ export class UserModel {
         const debitedBalance = Number(debitedAccount?.balance) - Number(value);
         const creditedBalance = Number(creditedAccount?.balance) + Number(value);
 
-        await prisma.transaction.create({ data });
+        const newTransaction = await prisma.transaction.create({ data });
 
+        // atualiza conta do usuário que realizou cash out
         await prisma.account.update({
             where: { id },
             data: { balance: debitedBalance }
         });
 
+        // atualiza conta do usuário que obteve um cash in
         await prisma.account.update({
             where: { id: creditedUser?.id },
-            data: { balance:  creditedBalance}
-        });
-
-        const newTransaction = await prisma.transaction.findFirst({
-            where: { id },
-            include: {
-                debited: true,
-                credited: true,
-            }
+            data: { balance: creditedBalance}
         });
 
         return newTransaction;
+    };
+
+    async getTransactionsById({ id }: TransactionsTypes): Promise<Transaction[]> {
+        const debitedTransactions = await prisma.transaction.findMany({ 
+            where: { 
+                debitedAccountId: id , 
+            },
+        });
+
+        const creditedTransactions = await prisma.transaction.findMany({ 
+            where: { 
+                creditedAccountId: id , 
+            },
+        });
+
+        return [...debitedTransactions, ...creditedTransactions];
     };
 };

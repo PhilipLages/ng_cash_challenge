@@ -28,4 +28,12 @@ export class UserController {
 
         return res.status(status).json(result);
     };
+
+    async getTransactionsById (req: Request, res: Response) {
+        const { id } = req.params;
+
+        const { status, result } = await userService.getTransactionsById(Number(id));
+
+        return res.status(status).json(result);
+    }
 };

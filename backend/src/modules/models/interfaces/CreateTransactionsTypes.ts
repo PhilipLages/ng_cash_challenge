@@ -1,6 +1,6 @@
 import { Decimal } from "@prisma/client/runtime";
 
-export interface transactionsTypes {
+export interface CreatetransactionsTypes {
     username: string;
     id: number;
     value: Decimal;

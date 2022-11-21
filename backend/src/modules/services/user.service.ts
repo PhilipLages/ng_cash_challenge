@@ -56,4 +56,14 @@ export default class UserService {
         
         return { status: CREATED, result };
     };
+
+    async getTransactionsById (id: number) {
+        const result = await userModel.getTransactionsById({ id });
+
+        if(!result.length) {
+            return { status: NOT_FOUND, result: { message: 'No transactions found' } };
+        }
+
+        return { status: OK, result };
+    };
 };

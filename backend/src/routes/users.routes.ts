@@ -11,6 +11,8 @@ export const usersRouter = express.Router();
 
 usersRouter.get('/:id', userController.getUserAccount);
 
+usersRouter.get('/:id/transactions', userController.getTransactionsById);
+
 usersRouter.post('/:id/transactions', userController.createTransaction);
 
 usersRouter.post('/signup', validateUser, userController.createUser);
