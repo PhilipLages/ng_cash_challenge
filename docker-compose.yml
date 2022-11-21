@@ -16,8 +16,6 @@ services:
     # terminal do container
     command: bash
 
-    ports:
-      - 3000:3000
     depends_on:
       - backend
     volumes:
