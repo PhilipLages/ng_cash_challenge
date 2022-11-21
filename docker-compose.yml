@@ -2,7 +2,7 @@ version: '3'
 
 services:
   frontend:
-    image: node:16.14
+    image: node:16.15
 
     #configs adicionais
     container_name: ng_cash_challenge_frontend
@@ -31,7 +31,7 @@ services:
       - ng_cash_challenge_net
 
   backend:
-    image: node:16.14
+    image: node:16.15
 
     #configs adicionais
     container_name: ng_cash_challenge_backend
