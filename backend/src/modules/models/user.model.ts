@@ -46,6 +46,7 @@ export class UserModel {
         const debitedBalance = Number(debitedAccount?.balance) - Number(value);
         const creditedBalance = Number(creditedAccount?.balance) + Number(value);
 
+        // cria uma nova transação
         const newTransaction = await prisma.transaction.create({ data });
 
         // atualiza conta do usuário que realizou cash out
