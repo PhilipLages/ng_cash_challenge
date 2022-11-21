@@ -16,10 +16,12 @@ services:
     # terminal do container
     command: bash
 
-    depends_on:
-      - backend
     volumes:
       - ./frontend:/app
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
 
     environment:
       - API_HOST=backend
