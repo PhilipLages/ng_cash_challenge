@@ -1,9 +1,13 @@
-import React from 'react'
+import SignUpForm from '../components/SignUpForm';
+import './styles/signUpPage.css';
 
 function SignUp() {
   return (
-    <div>SignUp</div>
+    <main className='signup-page'>
+      <img src="src/images/ngcash.jpg" alt="NG.CASH"/>
+      <SignUpForm/>
+    </main>
   )
 }
 
-export default SignUp
+export default SignUp;

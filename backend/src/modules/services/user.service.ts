@@ -26,7 +26,7 @@ export default class UserService {
     async getUserAccount (id: number) {
         const result = await userModel.getUserAccount({ id });
 
-        if(!result.id) {
+        if(!result) {
             return { status: NOT_FOUND, result: { message: 'Account not found' }};
         }
 

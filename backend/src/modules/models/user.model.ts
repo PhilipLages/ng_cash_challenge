@@ -27,7 +27,7 @@ export class UserModel {
     async getUserAccount ({ id }: AccountTypes) {
         const userAccount = await prisma.account.findUnique({ where: { id } });
 
-        return { id, balance: userAccount?.balance };
+        return userAccount;
     };
 
     async createTransaction ({ id, username, value }: CreatetransactionsTypes) {

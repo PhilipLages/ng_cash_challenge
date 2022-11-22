@@ -1,0 +1,41 @@
+@media only screen and (max-width : 500px) {
+	.form {
+		margin: auto;
+		width: 80%;
+		display: flex;
+		gap: 10px;
+	}
+	
+	.signup-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px
+	}
+}
+
+@media only screen and (min-width : 501px) {
+	.form {
+		margin: auto;
+		width: 35%;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap
+};
+
+.password-validation {
+	display: flex;
+	flex-direction: column;
+}
+
+.valid-field {
+	color: green;
+};
+
+.invalid-field {
+	color: black;
+};
