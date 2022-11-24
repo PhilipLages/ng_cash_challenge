@@ -1,8 +1,8 @@
 import express from 'express';
 import { UserController } from '../modules/controllers/user.controller';
 import { LoginController } from '../modules/controllers/login.controller';
-// import { authenticateLogin } from '../modules/middlewares/login.middlewares';
 import { validateUser } from '../modules/middlewares/user.middlewares';
+import authMiddleware from '../modules/middlewares/auth.middleware';
 
 const userController = new UserController();
 const loginController = new LoginController();
@@ -17,4 +17,4 @@ usersRouter.post('/:id/transactions', userController.createTransaction);
 
 usersRouter.post('/signup', validateUser, userController.createUser);
 
-usersRouter.post('/login', loginController.login);
+usersRouter.post('/login', authMiddleware, loginController.login);

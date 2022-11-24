@@ -15,7 +15,7 @@ export default class UserService {
         const hashedPassword = await bcrypt.hash(password, 10);       
 
         if(userExists) {
-            return { status: ALREADY_EXISTS, result: { message: 'User already exists' } };
+            return { status: ALREADY_EXISTS, result: { message: 'Usuário já existe' } };
         }        
 
         const result = await userModel.createUser({ username, password: hashedPassword })
@@ -26,8 +26,8 @@ export default class UserService {
     async getUserAccount (id: number) {
         const result = await userModel.getUserAccount({ id });
 
-        if(!result) {
-            return { status: NOT_FOUND, result: { message: 'Account not found' }};
+        if(!result.userAccount) {
+            return { status: NOT_FOUND, result: { message: 'Conta não encontrada' }};
         }
 
         return { status: OK, result };
@@ -39,17 +39,17 @@ export default class UserService {
         const debitedAccount = await prisma.account.findUnique({ where: { id } });
 
         if(!userExists) {
-            return { status: NOT_FOUND, result: { message: 'User not found' } };
+            return { status: NOT_FOUND, result: { message: 'Ussuário não encontrado' } };
         }
 
         if(userExists.id === debitedUser?.id) {
-            return { status:  ANAUTHORIZED, result: { message: 'You can\'t credit yourself' }};
+            return { status:  ANAUTHORIZED, result: { message: 'Você não pode realizar uma transação para si mesmo' }};
         }
 
-        const isBalanceValid = Number(debitedAccount?.balance) - Number(value) > 0;
+        const balanceNotValid = Number(debitedAccount?.balance) - Number(value) < 0;
 
-        if(!isBalanceValid) {
-            return { status:  ANAUTHORIZED, result: { message: 'You can\'t have a negative balance' }};
+        if(balanceNotValid) {
+            return { status:  ANAUTHORIZED, result: { message: 'Você não pode ficar com saldo negativo' }};
         }
 
         const result = await userModel.createTransaction({ id, username, value }); 
@@ -60,8 +60,8 @@ export default class UserService {
     async getTransactionsById (id: number) {
         const result = await userModel.getTransactionsById({ id });
 
-        if(!result.length) {
-            return { status: NOT_FOUND, result: { message: 'No transactions found' } };
+        if(!result) {
+            return { status: NOT_FOUND, result: { message: 'Nenhuma transação encontrada' } };
         }
 
         return { status: OK, result };

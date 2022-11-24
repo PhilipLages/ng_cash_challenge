@@ -9,32 +9,27 @@ const { NOT_FOUND, OK, ANAUTHORIZED } = statusCodes;
 const loginModel = new LoginModel();
 
 export default class LoginService {
-    async login(username: string, password: string) {
+	async login(username: string, password: string) {
 
-        const result = await loginModel.login({ username, password });
+		const result = await loginModel.login({ username, password });
 
-        if (!result) {
-            return { status: NOT_FOUND, result: { message: 'User not found' } };
-        }
+			if (!result) {
+				return { status: NOT_FOUND, result: { message: 'Este usuário não existe' } };
+			}
 
-        const isMatch = bcrypt.compareSync(password, result.password);
+			const isMatch = bcrypt.compareSync(password, result.password);
 
-        if (!isMatch) {
-            return { status: ANAUTHORIZED, result: { message: 'Invalid password' }};
-        }
+			if (!isMatch) {
+				return { status: ANAUTHORIZED, result: { message: 'Senha incorreta' }};
+			}
 
-        const user = {
-            id: result.id,
-            username: result.username
-        }
+			const user = {
+				id: result.id,
+				username: result.username
+			}
 
-        const token = jwt.sign({ 
-            id: result.id?.toString(),  
-            username: result.username,
-        }, JWT_SECRET, {
-            expiresIn: '1 day',
-        });
+			const token = jwt.sign({ id: result.id	}, JWT_SECRET, { expiresIn: '1d' });
 
-        return { status: OK, result: { user, token } };
-    };
+			return { status: OK, result: { user, token } };
+	};
 };

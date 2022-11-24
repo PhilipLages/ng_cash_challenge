@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+// import { useLocalStorage } from 'react-use';
 import { loginUser } from '../services';
 
 function LoginForm() {
 	const [login, setLogin] = useState({ username: '', password: '' });
+	// const [auth, setAuth] = useLocalStorage('auth', {});
 
 	const navigate = useNavigate();
 
@@ -16,7 +18,7 @@ function LoginForm() {
 
 		try {
 			const response = await loginUser(login);
-			console.log(response);			
+			// setAuth(response);		
 			
 			navigate(`/${response.user.id}/dashboard`);
 		} catch (error: any) {

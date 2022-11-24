@@ -26,8 +26,9 @@ export class UserModel {
 
     async getUserAccount ({ id }: AccountTypes) {
         const userAccount = await prisma.account.findUnique({ where: { id } });
+        const user = await prisma.user.findUnique({ where: { id } });
 
-        return userAccount;
+        return { userAccount, username: user?.username };
     };
 
     async createTransaction ({ id, username, value }: CreatetransactionsTypes) {
@@ -64,19 +65,41 @@ export class UserModel {
         return newTransaction;
     };
 
-    async getTransactionsById({ id }: TransactionsTypes): Promise<Transaction[]> {
+    async getTransactionsById({ id }: TransactionsTypes) {
         const debitedTransactions = await prisma.transaction.findMany({ 
             where: { 
                 debitedAccountId: id , 
             },
+            include: {
+                debited: {
+                    select: {
+                        user: {
+                            select: {
+                                username: true
+                            }
+                        }
+                    }
+                }
+            }
         });
 
         const creditedTransactions = await prisma.transaction.findMany({ 
             where: { 
                 creditedAccountId: id , 
             },
+            include: {
+                credited: {
+                    select: {
+                        user: {
+                            select: {
+                                username: true
+                            }
+                        }
+                    }
+                }
+            }
         });
 
-        return [...debitedTransactions, ...creditedTransactions];
+        return  [...debitedTransactions, ...creditedTransactions];
     };
 };
