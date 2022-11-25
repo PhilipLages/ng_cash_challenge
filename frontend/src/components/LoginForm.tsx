@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-// import { useLocalStorage } from 'react-use';
-import { loginUser } from '../services';
+import { useLocalStorage } from 'react-use';
+import { authLogin, loginUser } from '../services/axios';
 
 function LoginForm() {
 	const [login, setLogin] = useState({ username: '', password: '' });
+	const [errorMessage, setErrorMessage] = useState('');
 	// const [auth, setAuth] = useLocalStorage('auth', {});
 
 	const navigate = useNavigate();
@@ -18,23 +19,23 @@ function LoginForm() {
 
 		try {
 			const response = await loginUser(login);
-			// setAuth(response);		
+			authLogin(response.token);						
 			
 			navigate(`/${response.user.id}/dashboard`);
 		} catch (error: any) {
 			setLogin({ username: '', password: '' })
-			window.alert(error.response.data.message);
+			setErrorMessage(error.response.data.message);			
 		}
 	};	
 
 	const isUsernameValid = login.username.length > 0;
 	const isPasswordValid = login.password.length > 0;
-
 	const isDisable = isPasswordValid && isUsernameValid;
 
   return (
     <form onSubmit={ handleSubmit }>
       <section className='login-form'>
+				{ errorMessage && <span>{ errorMessage }</span> }
 				<input 
 					className='input'
 					type="text" 

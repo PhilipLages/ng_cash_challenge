@@ -2,7 +2,6 @@ import LoginModel from '../models/login.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import statusCodes from '../../utils/statusCodes';
-import JWT_SECRET from '../../secret';
 
 const { NOT_FOUND, OK, ANAUTHORIZED } = statusCodes;
 
@@ -28,7 +27,7 @@ export default class LoginService {
 				username: result.username
 			}
 
-			const token = jwt.sign({ id: result.id	}, JWT_SECRET, { expiresIn: '1d' });
+			const token = jwt.sign({ id: result.id	}, process.env.JWT_SECRET ?? '', { expiresIn: '1d' });
 
 			return { status: OK, result: { user, token } };
 	};

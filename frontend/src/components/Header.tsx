@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate,  } from 'react-router-dom';
 import { HeaderTypes } from '../interfaces/HeaderTypes';
 import logo from '../images/logo.jpg';
 import './styles/header.css';
-import { getUserAccount } from '../services';
+import { getUserAccount } from '../services/axios';
 
 function Header({ id }: HeaderTypes) {
   const [username, setUsername] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchAccount = async () => {
+     try {
       const response = await getUserAccount(id);
-
       setUsername(response.username);
+     } catch (error) {
+      navigate('/');
+     } 
+
     };
 
     fetchAccount();

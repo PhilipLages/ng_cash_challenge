@@ -3,7 +3,7 @@ import LoginService from "../services/login.service";
 
 export class LoginController {
     async login (req: Request, res: Response) {
-        const { username, password } = req.body;
+        const { username, password } = req.body;        
 
         const loginService = new LoginService();
         

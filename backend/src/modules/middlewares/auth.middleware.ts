@@ -1,22 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import statusCodes from "../../utils/statusCodes";
 import jwt from 'jsonwebtoken';
-import JWT_SECRET from "../../secret";
 import { TokenTypes } from "../models/interfaces/tokenTypes";
 
 const { ANAUTHORIZED } = statusCodes;
 
 export default function authMiddleware (req: Request, res: Response, next: NextFunction) {
-  const { authorization } = req.headers;
+  const { authorization } = req.headers; 
 
   if (!authorization) {
-    return res.status(ANAUTHORIZED).json({ message: 'Please authenticate' });
+    return res.status(ANAUTHORIZED).json({ message: 'Não autorizado' });
   }
 
-  const token = authorization.replace('Bearer', '').trim();
+  const token = authorization.replace('Basic', '').trim();  
 
   try {
-    const data = jwt.verify(token, JWT_SECRET);    
+    const data = jwt.verify(token, process.env.JWT_SECRET ?? '');    
     
     const { id } = data as TokenTypes;
 

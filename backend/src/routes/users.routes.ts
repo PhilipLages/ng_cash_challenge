@@ -9,12 +9,16 @@ const loginController = new LoginController();
 
 export const usersRouter = express.Router();
 
-usersRouter.get('/:id', userController.getUserAccount);
+usersRouter.post('/signup', validateUser, userController.createUser);
+usersRouter.post('/login', loginController.login);
 
-usersRouter.get('/:id/transactions', userController.getTransactionsById);
+usersRouter.use(authMiddleware);
+
+usersRouter.get('/:id', userController.getUserAccount);
 
 usersRouter.post('/:id/transactions', userController.createTransaction);
 
-usersRouter.post('/signup', validateUser, userController.createUser);
+usersRouter.get('/:id/transactions', userController.getTransactionsById);
 
-usersRouter.post('/login', authMiddleware, loginController.login);
+
+

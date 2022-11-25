@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import TableFilters from '../components/TableFilters';
 import TransactionsTable from '../components/TransactionsTable';
 import { TransactionTypes } from '../interfaces/TransactionTypes';
-import { createTransaction, getTransactionsById, getUserAccount } from '../services';
+import { createTransaction, getTransactionsById, getUserAccount } from '../services/axios';
 import './styles/dashboard.css';
 
 function Dashboard() {
@@ -50,9 +50,7 @@ function Dashboard() {
   const filteredByDate = transactions.filter((transaction: TransactionTypes) =>{
     return transaction.createdAt.includes(filters.date);
   });
-  console.log(filteredByDate);
-  
-
+ 
   const filterByType = ((transaction: TransactionTypes) => {
     if (filters.type && filters.type === 'cashOut') {
       return transaction.debitedAccountId === Number(id);
