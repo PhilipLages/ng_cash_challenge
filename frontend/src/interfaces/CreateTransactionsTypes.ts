@@ -7,5 +7,7 @@ export interface CreateTransactionsTypes {
     value: number;
   };
   handleSubmit: FormEventHandler;
-  setTransaction: Function;
+  setNewTransaction: Function;
+  errorMessage: string;
+  setErrorMessage: Function;
 };

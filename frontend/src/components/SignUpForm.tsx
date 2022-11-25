@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
+import { AuthContextTypes } from '../interfaces/AuthContextTypes';
 import { createUser } from '../services/axios';
 import './styles/signUpForm.css';
 
 function SignUpForm() {
 	const [login, setLogin] = useState({ username: '', password: '' });
+	const [isloading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const navigate = useNavigate();
+	const { setIsAccountCreated } = useContext(AuthContext) as AuthContextTypes;
 
 	const handleChange = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) => {
 		setLogin((prev) => ( { ...prev, [name]: value }));
@@ -15,14 +20,20 @@ function SignUpForm() {
 	const handleSubmit = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
 		
+		setIsLoading(true);
 		try {			
-			const response = await createUser(login);
-
-			window.alert(`Conta criada com sucesso! Olá, ${response.username}`);		
+			await createUser(login);
+			
+			setIsLoading(false);
+			setIsAccountCreated(true);
 			navigate('/');
 		} catch (error: any) {			
-			setLogin({ username: '', password: '' })
-			window.alert(error.response.data.message);
+			const { message } = error.response.data;
+
+			setLogin({ username: '', password: '' });
+			setErrorMessage(message);
+			setIsLoading(false);
+			setIsAccountCreated(false);
 		};			
 	};
 
@@ -35,6 +46,7 @@ function SignUpForm() {
 
   return (
 		<form onSubmit={ handleSubmit } className='form'>
+			<span className='error-message'>{ errorMessage ? errorMessage : '' }</span>
 			<section className='signup-form'>
 				<input 
 					className='input'
@@ -68,14 +80,16 @@ function SignUpForm() {
 						>
 						Pelo menos 8 caracteres
 					</p>
+
 					<p 
 						className={ isPasswordValid ? 'valid-field' : 'invalid-field' }
 						>
 						Pelo menos 1 número e 1 letra maiúscula
 					</p>
 				</div>
-			<button className='button is-link' type='submit' disabled={ !isDisable }>
-				Criar conta
+				
+			<button className='button is-link submit-btn' type='submit' disabled={ !isDisable }>
+				{ isloading ? 'Carregando...' : 'Criar conta' }
 			</button>      
 			</section>
 		</form>

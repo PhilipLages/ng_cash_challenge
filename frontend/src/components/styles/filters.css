@@ -1,0 +1,19 @@
+@media only screen and (max-width : 400px) {
+  .filters-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filters-title {
+    font-size: 1.3em;
+    color: #1693a5;
+    padding: 10px;
+  }
+  
+  .radio-container {
+    margin-bottom: 5px;
+    color: #1693a5;
+  }
+}

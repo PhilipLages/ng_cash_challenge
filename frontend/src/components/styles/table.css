@@ -1,0 +1,9 @@
+.table-container {
+  height: 100vh;
+  overflow: hidden;
+}
+.transactions-table {
+  height: 100vh;
+  float: left;
+  overflow: scroll;
+}

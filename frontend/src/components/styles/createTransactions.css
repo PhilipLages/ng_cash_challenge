@@ -1,0 +1,39 @@
+@media only screen and (max-width : 400px) {
+  .create-transaction-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .new-transaction-title {
+    font-size: 1.3em;
+    color: #1693a5;
+    padding: 15px;
+  }
+  
+  .balance {
+    font-size: 1.1em;
+    color: #1693a5;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error {
+    font-size: 1.1em;
+    color: red;
+  }
+  
+  .transaction-btn {
+    width: 100%;
+    background-color: #1693a5;
+    color: black;
+    border:none;
+    height: 28px;
+    border-radius: 30px;
+  }
+}

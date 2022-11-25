@@ -1,36 +1,50 @@
 import { ChangeEvent } from 'react';
 import { CreateTransactionsTypes } from '../interfaces/CreateTransactionsTypes';
+import './styles/createTransactions.css';
 
-function CreateTransactions({ balance, transaction, handleSubmit, setTransaction }: CreateTransactionsTypes) {
+function CreateTransactions(props: CreateTransactionsTypes) {
+
+  const {  
+    balance, 
+    transaction, 
+    handleSubmit, 
+    setNewTransaction, 
+    errorMessage,
+    setErrorMessage,
+  } = props;
 
   const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
-    setTransaction((prev: object) => ( { ...prev, [name]: value }));
+    setNewTransaction((prev: object) => ( { ...prev, [name]: value }));
+    setErrorMessage('');
   };
 
   return (
     <section className='create-transaction-container'>
-      <h2>
+      <h2 className='new-transaction-title'>
         Nova Transação
       </h2>
-      <p>
+      <p className='balance'>
         { `Saldo: R$${ balance }` }
       </p>
-      <form onSubmit={ handleSubmit }>
+      <span className='error'>{ errorMessage ? errorMessage : '' }</span>
+      <form onSubmit={ handleSubmit } className='form form-container'>
         <input 
+          className='input is-small is-link is-rounded'
           type="text" 
           name="username" 
           placeholder='usuário' 
           value={ transaction.username }
           onChange={ handleChange }
         />
-        <input 
+        <input
+          className='input is-small is-link is-rounded'
           type="number" 
           name="value" 
           placeholder='valor' 
           value={ transaction.value }
           onChange={ handleChange }
         />
-        <button type="submit">
+        <button className=' transaction-btn' type="submit">
           Enviar
         </button>
       </form>

@@ -1,37 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate,  } from 'react-router-dom';
-import { HeaderTypes } from '../interfaces/HeaderTypes';
+import { PropsWithChildren, useContext } from 'react'
+import { Link  } from 'react-router-dom';
 import logo from '../images/logo.jpg';
 import './styles/header.css';
-import { getUserAccount } from '../services/axios';
+import { AuthContext } from '../context/AuthProvider';
+import { AuthContextTypes } from '../interfaces/AuthContextTypes';
 
-function Header({ id }: HeaderTypes) {
-  const [username, setUsername] = useState('');
+function Header() { 
+  const { 
+    user: { username }, 
+    setLogin, 
+    setAuthenticated,
+    setErrorMessage,
+  } = useContext(AuthContext) as AuthContextTypes;
 
-  const navigate = useNavigate();
+  const handleLogout = () => {
+    setAuthenticated(false);
+    setLogin({ username: '', password: '' });
+    setErrorMessage('');   
+  };
 
-  useEffect(() => {
-    const fetchAccount = async () => {
-     try {
-      const response = await getUserAccount(id);
-      setUsername(response.username);
-     } catch (error) {
-      navigate('/');
-     } 
-
-    };
-
-    fetchAccount();
-  }, []);
-  
   return (
     <header>
       <section className='header-container'>
       <img src={ logo } alt="NG.CASH" />
-        <p>
+        <p className='username'>
           { `Olá, ${ username }! ` }
         </p>
-        <Link to={'/'}>
+        <Link to={'/'} onClick={ handleLogout }>
           Logout
         </Link>
       </section>

@@ -39,7 +39,7 @@ export default class UserService {
         const debitedAccount = await prisma.account.findUnique({ where: { id } });
 
         if(!userExists) {
-            return { status: NOT_FOUND, result: { message: 'Ussuário não encontrado' } };
+            return { status: NOT_FOUND, result: { message: 'Usuário não encontrado' } };
         }
 
         if(userExists.id === debitedUser?.id) {

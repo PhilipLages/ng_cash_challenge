@@ -1,4 +1,12 @@
 body {
-  background-color: black;
   height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-container {
+  width: 90%;
+  height: 100vh;
+  overflow: hidden;
+  margin: auto;
+  font-family: 'Josefin Sans', sans-serif;
 }

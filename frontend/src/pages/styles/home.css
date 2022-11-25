@@ -1,32 +1,54 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 * {
-    margin: 0;
-    box-sizing: border-box;
+	margin: 0;
+	box-sizing: border-box;
+	background-color: black;
 }
 
-.container {
-    background-color: black;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+@media only screen and (max-width : 400px) {
+	.container {
+		max-width: 400px;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+		font-family: 'Josefin Sans', sans-serif;
+	}
+	
+	.image {
+		margin-top: 0;
+	}
+	
+	.links-container {
+		display: flex;
+		width: 80%;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		font-size: 1.5em;
+	}
+	
+	.title {
+		color: white;
+		font-size: 1.8em;
+	}
+	
+	.title span {
+		color: #1693a5;
+	}
+	
+	.links-container a {
+		text-align: center;
+		padding: 10px;
+		width: 70%;
+		text-decoration: none;
+		color: #1693a5;
+		border: 2px solid ;
+		border-radius: 50%;
+	}
+
 }
 
-.login-container {
-    display: flex;
-    width: 80%;
-    flex-direction: column;
-    align-items: center;
-}
-
-.login-container a {
-    font-size: 1.5em;
-    margin-top: 10px;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    width: 120%;
-    gap: 10px;
-}

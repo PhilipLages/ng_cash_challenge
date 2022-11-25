@@ -1,5 +1,6 @@
 import { TransactionsTableTypes } from "../interfaces/TransactionsTableTypes";
 import { format } from 'date-fns';
+import './styles/table.css';
 
 function TransactionsTable({ id, transactions, filterByType }: TransactionsTableTypes) {
 
@@ -11,31 +12,34 @@ function TransactionsTable({ id, transactions, filterByType }: TransactionsTable
 
   return (
     <section className="table-container">
-      <table className="table is-bordered">
-        <thead>
-          <tr>
-            <th>Valor (R$)</th>
-            <th>Data</th>
-            <th>Tipo</th>
-            <th>Usuário</th>
-          </tr>
-        </thead>
-        <tbody>
-          { transactions.filter(filterByType)
-            .map(({ id: transacId, debitedAccountId, value, createdAt, debited, credited }) => (
-            <tr key={ Number(transacId) }>
-              <td>{ value }</td>
-              <td>{ formatDate(createdAt) }</td>
-              <td>{ debitedAccountId === id ? 'Cash Out' : 'Cash In' }</td>
-              { debited ? (
-                <td>{ debited.user.username }</td>
-              ) : (
-                <td>{ credited.user.username }</td>
-              ) }
+      <h2>Suas transações</h2>
+      <div className='transactions-table'>
+        <table className="table is-bordered">
+          <thead>
+            <tr>
+              <th>Valor (R$)</th>
+              <th>Data</th>
+              <th>Tipo</th>
+              <th>Usuário</th>
             </tr>
-          )) }
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            { transactions.filter(filterByType)
+              .map(({ id: transacId, debitedAccountId, value, createdAt, debited, credited }) => (
+              <tr key={ Number(transacId) }>
+                <td>{ value }</td>
+                <td>{ formatDate(createdAt) }</td>
+                <td>{ debitedAccountId === id ? 'Cash Out' : 'Cash In' }</td>
+                { debited ? (
+                  <td>{ debited.user.username }</td>
+                ) : (
+                  <td>{ credited.user.username }</td>
+                ) }
+              </tr>
+            )) }
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }
