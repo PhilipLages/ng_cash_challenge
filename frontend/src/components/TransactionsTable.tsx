@@ -12,9 +12,9 @@ function TransactionsTable({ id, transactions, filterByType }: TransactionsTable
 
   return (
     <section className="table-container">
-      <h2>Suas transações</h2>
+      <h2 className="table-title">Suas transações</h2>
       <div className='transactions-table'>
-        <table className="table is-bordered">
+        <table className="">
           <thead>
             <tr>
               <th>Valor (R$)</th>

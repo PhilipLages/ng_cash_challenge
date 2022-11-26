@@ -13,39 +13,40 @@ function TableFilters({ filters, setFilters }: TableFiltersTypes) {
       <h2 className='filters-title'>
         Filtrar transações
       </h2>
-      <div className='control radio-container'>
-        <label className='radio' htmlFor="cashIn">
-          Cash In
-          <input 
-            type="radio" 
-            name="type" 
-            id="cashIn"
-            value='cashIn'
-            onChange={ handleFiltersChange }
-          />
-        </label>
+      <section className='radios'>
+        <div className='radio-container'>
+          <label className='cash-filter' htmlFor="cashIn">Cash In </label>
+            <input 
+              type="radio" 
+              name="type" 
+              id="cashIn"
+              value='cashIn'
+              onChange={ handleFiltersChange }
+            />
+        </div>
 
-        <label className='radio' htmlFor="cashOut">
-          Cash Out
-          <input 
-            type="radio" 
-            name="type" 
-            id="cashOut" 
-            value='cashOut'
-            onChange={ handleFiltersChange }
-          />
-        </label>
-      </div>
+        <div className='radio-container'>      
+          <label className='cash-filter' htmlFor="cashOut">Cash Out</label>
+            <input 
+              type="radio" 
+              name="type" 
+              id="cashOut" 
+              value='cashOut'
+              onChange={ handleFiltersChange }
+            />
+        </div>
+      </section>
 
-      <div className='data'>
-      <label htmlFor="date">Data</label>      
-      <input 
-        type="date" 
-        name="date" 
-        id="date"
-        value={ filters.date }
-        onChange={ handleFiltersChange }
-      />
+      <div className='data-container'>
+        <label className='data-title' htmlFor="date">Data</label>      
+        <input 
+          className='input is-normal'
+          type="date" 
+          name="date" 
+          id="date"
+          value={ filters.date }
+          onChange={ handleFiltersChange }
+        />
       </div>
     </section>
   )

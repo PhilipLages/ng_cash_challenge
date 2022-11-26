@@ -11,9 +11,35 @@
     color: #1693a5;
     padding: 10px;
   }
+  .radios {
+    display: flex;
+    gap: 5px;
+  }
   
   .radio-container {
     margin-bottom: 5px;
+    width: 128px;
     color: #1693a5;
+    display: flex;
+    justify-content: center;
+    padding: 0 8px;  
+    border: 2px solid #1693a5;
+    border-radius: 20px;
+  }
+
+  .cash-filter {
+    margin-inline: 6px;
+  }
+
+  .data-container {
+    color: #1693a5;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+  }
+
+  .data-title {
+    font-size: 1.1em;
   }
 }
