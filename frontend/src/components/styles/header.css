@@ -1,4 +1,5 @@
 .header-container {
+  position: fixed;
   display: flex;
   height: 60px;
   align-items: center;

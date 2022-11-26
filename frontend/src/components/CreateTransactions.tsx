@@ -1,8 +1,9 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { CreateTransactionsTypes } from '../interfaces/CreateTransactionsTypes';
 import './styles/createTransactions.css';
 
 function CreateTransactions(props: CreateTransactionsTypes) {
+  const [showNewTransaction, setShowNewTransaction] = useState(false);
 
   const {  
     balance, 
@@ -18,36 +19,48 @@ function CreateTransactions(props: CreateTransactionsTypes) {
     setErrorMessage('');
   };
 
+  const handleShowNewTransaction = () => {
+    setShowNewTransaction(showNewTransaction ? false : true);
+  };
+
   return (
     <section className='create-transaction-container'>
-      <h2 className='new-transaction-title'>
-        Nova Transação
-      </h2>
-      <p className='balance'>
+      <h1 className='balance'>
         { `Saldo: R$${ balance }` }
-      </p>
-      <span className='error'>{ errorMessage ? errorMessage : '' }</span>
-      <form onSubmit={ handleSubmit } className='form form-container'>
-        <input 
-          className='input is-small is-link is-rounded'
-          type="text" 
-          name="username" 
-          placeholder='usuário' 
-          value={ transaction.username }
-          onChange={ handleChange }
-        />
-        <input
-          className='input is-small is-link is-rounded'
-          type="number" 
-          name="value" 
-          placeholder='valor' 
-          value={ transaction.value }
-          onChange={ handleChange }
-        />
-        <button className=' transaction-btn' type="submit">
-          Enviar
-        </button>
-      </form>
+      </h1>
+      <button      
+        type='button'
+        className='new-transaction-title'
+        onClick={ handleShowNewTransaction }
+        >
+        Nova Transação
+      </button>
+      { showNewTransaction && (
+        <div className='inputs-container'>
+          <span className='error'>{ errorMessage ? errorMessage : '' }</span>
+          <form onSubmit={ handleSubmit } className='form form-container'>
+            <input 
+              className='input is-small is-link is-rounded'
+              type="text" 
+              name="username" 
+              placeholder='usuário' 
+              value={ transaction.username }
+              onChange={ handleChange }
+            />
+            <input
+              className='input is-small is-link is-rounded'
+              type="number" 
+              name="value" 
+              placeholder='valor' 
+              value={ transaction.value }
+              onChange={ handleChange }
+            />
+            <button className=' transaction-btn' type="submit">
+              Enviar
+            </button>
+          </form>
+        </div>
+      ) }      
     </section>
   )
 };

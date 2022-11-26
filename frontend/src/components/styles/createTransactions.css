@@ -6,10 +6,18 @@
     align-items: center;
   }
   
+  .inputs-container {
+    width: 100%;
+  }
+  
   .new-transaction-title {
+    width: 200px;
     font-size: 1.3em;
     color: #1693a5;
-    padding: 15px;
+    border: 1px solid #1693a5;
+    border-radius: 30px;
+    box-shadow: 1px 1px;
+    margin-bottom: 8px;
   }
   
   .balance {
