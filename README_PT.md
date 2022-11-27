@@ -24,6 +24,15 @@ Esta é uma aplicação dockerizada e desenvolvida tendo em mente as dimensões 
 **Servidor:** Node, Express, TypeScript, Prisma ORM, JWT
 
 **Banco de Dados:** PostgreSQL
+
+## Variáveis de ambiente
+
+Para rodar esta aplicação você precisará adicionar as seguintes variáveis de ambiente no arquivo .env na pasta backend:
+
+`DATABASE_URL="postgresql://root:password@db:5432/NgCashDB?schema=mySchema"`
+
+`JWT_SECRET = 'string_qualquer'`
+
 ## Para rodar a aplicação, siga os comandos
 
 Clone o repositório
@@ -79,14 +88,6 @@ Instale as dependências
   npm run dev
 ```
 Acesse o localhost criado pelo Vite
-
-## Variáveis de ambiente
-
-Para rodar esta aplicação você precisará adicionar as seguintes variáveis de ambiente no arquivo .env na pasta backend:
-
-`DATABASE_URL="postgresql://root:password@db:5432/NgCashDB?schema=mySchema"`
-
-`JWT_SECRET = 'string qualquer'`
 
 ## Back-End: API e Endpoints
 

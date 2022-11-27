@@ -25,6 +25,15 @@ This is a dockerized application developed with the dimensions of a mobile devic
 **Server:** Node, Express, TypeScript, Prisma ORM, JWT
 
 **DataBase:** PostgreSQL
+
+## Environment Variables
+
+To run this application you will need to add the following environment variables to the .env file in the backend folder:
+
+`DATABASE_URL="postgresql://root:password@db:5432/NgCashDB?schema=mySchema"`
+
+`JWT_SECRET = 'any_string'`
+
 ## Run locally
 
 Clone the repository
@@ -80,15 +89,6 @@ Install dependencies
   npm run dev
 ```
 Access the link created by Vite
-
-## Environment Variables
-
-To run this application you will need to add the following environment variables to the .env file in the backend folder:
-
-
-`DATABASE_URL="postgresql://root:password@db:5432/NgCashDB?schema=mySchema"`
-
-`JWT_SECRET = 'any_string'`
 
 ## Back-End: API e Endpoints
 
