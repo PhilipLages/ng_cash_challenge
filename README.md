@@ -49,8 +49,13 @@ Attach to backend container
 
 ```bash
   docker exec -it ng_cash_challenge_backend bash
-
 ```
+Install dependencies
+
+```bash
+  npm install
+```
+
 Create database
 
 ```bash
@@ -65,6 +70,12 @@ Start server
 
 Access the ng_cash_challenge_frontend container via VSCode's DevContainers extension
 
+Install dependencies
+
+```bash
+  npm install
+```
+
 ```bash
   npm run dev
 ```
@@ -72,7 +83,7 @@ Access the link created by Vite
 
 ## Environment Variables
 
-To run this application you will need to add the following environment variables to the .env file:
+To run this application you will need to add the following environment variables to the .env file in the backend folder:
 
 
 `DATABASE_URL="postgresql://root:password@db:5432/NgCashDB?schema=mySchema"`
