@@ -26,8 +26,6 @@ function CreateTransactions(props: CreateTransactionsTypes) {
         >
         Nova Transação
       </h2>
-
-        <div className='inputs-container'>
           <span className='error'>{ errorMessage ? errorMessage : '' }</span>
           <form onSubmit={ handleSubmit } className='form form-container'>
             <input 
@@ -50,7 +48,6 @@ function CreateTransactions(props: CreateTransactionsTypes) {
               Enviar
             </button>
           </form>
-        </div>
 
     </section>
   )
