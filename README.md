@@ -6,7 +6,7 @@ This is a dockerized application developed with the dimensions of a mobile devic
 
 ## Demo
 
-Insert gif or link to demo
+<img src='./ng.gif' width='300px'>
 
 
 ## Features
