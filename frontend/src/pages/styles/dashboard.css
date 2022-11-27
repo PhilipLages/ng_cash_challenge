@@ -1,6 +1,7 @@
 .dashboard-container {
   padding-top: 60px;
   height: 100vh;
+  overflow: hidden;
   width: 90%;
   height: 100vh;
   margin: auto;

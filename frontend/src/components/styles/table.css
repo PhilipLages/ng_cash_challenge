@@ -11,14 +11,30 @@
     color: #1693a5;
     padding: 10px;
   }
+
+  .container-table {
+    max-height: 200px;
+    overflow-y: scroll;
+    border: 2px solid #1693a5;
+  }
   
   .table-data {
     table-layout: fixed;
     text-align: center;
     width: 100%;
     border-collapse: collapse;
-    border: 2px solid #1693a5;
+    border-radius: 3px;
     color: white;
+  }
+
+  tr {
+    border: 1px solid #1693a5;
+    height: 40px;
+  }
+
+  th {
+    position: sticky;
+    top: 0px;
   }
 
   thead th:nth-child(1) {

@@ -3,26 +3,18 @@ import { TableFiltersTypes } from '../interfaces/TableFiltersTypes';
 import './styles/filters.css';
 
 function TableFilters({ filters, setFilters }: TableFiltersTypes) {
-  const [showFilters, setShowFilters] = useState(false);
-
   const handleFiltersChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     setFilters((prev: object) => ({ ...prev, [name]: value }));
   };
 
-  const handleShowFilters = () => {
-    setShowFilters(showFilters ? false : true);
-  }
-
   return (
     <section className='filters-container'>
-      <button 
-        type='button' 
+      <h2 
         className='filters-title'
-        onClick={ handleShowFilters }
         >
         Filtrar transações
-      </button>
-      { showFilters && (
+      </h2>
+
         <div className='filter-inputs'>
           <section className='radios'>
           <div className='radio-container'>
@@ -60,7 +52,7 @@ function TableFilters({ filters, setFilters }: TableFiltersTypes) {
           />
         </div>
         </div>
-      ) }
+
     </section>
   )
 }

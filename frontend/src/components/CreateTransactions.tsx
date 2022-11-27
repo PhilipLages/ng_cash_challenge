@@ -3,8 +3,6 @@ import { CreateTransactionsTypes } from '../interfaces/CreateTransactionsTypes';
 import './styles/createTransactions.css';
 
 function CreateTransactions(props: CreateTransactionsTypes) {
-  const [showNewTransaction, setShowNewTransaction] = useState(false);
-
   const {  
     balance, 
     transaction, 
@@ -19,23 +17,16 @@ function CreateTransactions(props: CreateTransactionsTypes) {
     setErrorMessage('');
   };
 
-  const handleShowNewTransaction = () => {
-    setShowNewTransaction(showNewTransaction ? false : true);
-  };
-
   return (
     <section className='create-transaction-container'>
       <h1 className='balance'>
         { `Saldo: R$${ balance }` }
       </h1>
-      <button      
-        type='button'
-        className='new-transaction-title'
-        onClick={ handleShowNewTransaction }
+      <h2 className='new-transaction-title'
         >
         Nova Transação
-      </button>
-      { showNewTransaction && (
+      </h2>
+
         <div className='inputs-container'>
           <span className='error'>{ errorMessage ? errorMessage : '' }</span>
           <form onSubmit={ handleSubmit } className='form form-container'>
@@ -60,7 +51,7 @@ function CreateTransactions(props: CreateTransactionsTypes) {
             </button>
           </form>
         </div>
-      ) }      
+
     </section>
   )
 };

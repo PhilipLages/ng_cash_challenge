@@ -11,6 +11,7 @@
   }
   
   .new-transaction-title {
+    text-align: center;
     width: 200px;
     font-size: 1.3em;
     color: #1693a5;

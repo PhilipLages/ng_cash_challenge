@@ -18,7 +18,7 @@ function Home() {
       </h1>
       <section className='links-container'>
       { isAccountCreated && (
-        <span>Conta criada com sucesso!</span>
+        <span className='account-success'>Conta criada com sucesso!</span>
       ) }
         <Link to={'/login'}>
           Faça login
