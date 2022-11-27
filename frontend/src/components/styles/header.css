@@ -1,0 +1,23 @@
+.header-container {
+  position: fixed;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #1693a5;
+  font-size: 1.2em;
+  border-bottom: 1px solid ;
+}
+
+.header-container a {
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #1693a5;
+}
+
+.header-container img {
+  width: 15%;
+  margin-top: 0px;
+}

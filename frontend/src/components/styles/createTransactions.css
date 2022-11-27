@@ -1,0 +1,45 @@
+@media only screen and (max-width : 400px) {
+  .create-transaction-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    
+  .new-transaction-title {
+    text-align: center;
+    width: 200px;
+    font-size: 1.3em;
+    color: #1693a5;
+    border: 1px solid #1693a5;
+    border-radius: 30px;
+    box-shadow: 1px 1px;
+    margin-bottom: 8px;
+  }
+  
+  .balance {
+    font-size: 1.1em;
+    color: #1693a5;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error {
+    font-size: 1.1em;
+    color: red;
+    text-align: center;
+  }
+  
+  .transaction-btn {
+    width: 100%;
+    background-color: #1693a5;
+    color: black;
+    border:none;
+    height: 28px;
+    border-radius: 30px;
+  }
+}
