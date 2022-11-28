@@ -1,7 +1,7 @@
 
 # NG.CASH Challenge
 
-This is a dockerized application developed with the dimensions of a mobile device in mind. For a better experience, go to inspect and enable mobile mode on device toolbar.
+This is a dockerized application with MSC architecture developed with the dimensions of a mobile device in mind. For a better experience, go to inspect and enable mobile mode on device toolbar.
 
 
 ## Demo
@@ -14,7 +14,7 @@ This is a dockerized application developed with the dimensions of a mobile devic
 - Creating an account;
 - Logging into an account;
 - Creating financial transactions between users;
-- Listing transactions for logged in users;
+- Listing transactions for logged users;
 - Protection by authentication.
 
 
@@ -90,7 +90,7 @@ Install dependencies
 ```
 Access the link created by Vite
 
-## Back-End: API e Endpoints
+## Back-End: API and Endpoints
 
 #### base URL 
 
