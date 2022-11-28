@@ -1,7 +1,7 @@
 
 # NG.CASH Challenge
 
-This is a dockerized application with MSC architecture developed with the dimensions of a mobile device in mind. For a better experience, go to inspect and enable mobile mode on device toolbar.
+This is a dockerized application with MSC architecture, developed with the dimensions of a mobile device in mind. For a better experience, go to inspect and enable mobile mode on device toolbar.
 
 
 ## Demo
