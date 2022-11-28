@@ -1,7 +1,7 @@
 
 # Desafio NG.CASH
 
-Esta é uma aplicação dockerizada e desenvolvida tendo em mente as dimensões de um aparelho celular. Para uma melhor experiência, entre em inspecionar e ativo o modo mobile.
+Esta é uma aplicação dockerizada com arquitetura MSC, e desenvolvida tendo em mente as dimensões de um aparelho celular. Para uma melhor experiência, entre em inspecionar e ativo o modo mobile.
 
 ## Demo
 
