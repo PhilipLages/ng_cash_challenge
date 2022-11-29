@@ -54,6 +54,8 @@ Start containers
   docker-compose up -d
 ```
 
+## Backend
+
 Attach to backend container
 
 ```bash
@@ -77,7 +79,13 @@ Start server
   npm run dev
 ```
 
-Access the ng_cash_challenge_frontend container via VSCode's DevContainers extension
+## Frontend
+
+Attach to frontend container
+
+```bash
+  docker exec -it ng_cash_challenge_frontend bash
+```
 
 Install dependencies
 
@@ -88,7 +96,7 @@ Install dependencies
 ```bash
   npm run dev
 ```
-Access the link created by Vite
+Access http://localhost:3000
 
 ## Back-End: API and Endpoints
 
