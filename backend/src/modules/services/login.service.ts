@@ -27,7 +27,9 @@ export default class LoginService {
 				username: result.username
 			}
 
-			const token = jwt.sign({ id: result.id	}, process.env.JWT_SECRET ?? '', { expiresIn: '1d' });
+			const secret = process.env.JWT_SECRET || 'yourSecretString';
+
+			const token = jwt.sign({ id: result.id	}, secret, { expiresIn: '1d' });
 
 			return { status: OK, result: { user, token } };
 	};

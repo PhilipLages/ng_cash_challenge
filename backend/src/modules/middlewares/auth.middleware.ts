@@ -13,9 +13,10 @@ export default function authMiddleware (req: Request, res: Response, next: NextF
   }
 
   const token = authorization.replace('Basic', '').trim();  
+  const secret = process.env.JWT_SECRET || 'yourSecretString'
 
   try {
-    const data = jwt.verify(token, process.env.JWT_SECRET ?? '');    
+    const data = jwt.verify(token, secret);    
     
     const { id } = data as TokenTypes;
 
