@@ -93,6 +93,8 @@ Install dependencies
   npm install
 ```
 
+Start App
+
 ```bash
   npm run dev
 ```
