@@ -25,14 +25,6 @@ Esta é uma aplicação dockerizada com arquitetura MSC, e desenvolvida tendo em
 
 **Banco de Dados:** PostgreSQL
 
-## Variáveis de ambiente
-
-Para rodar esta aplicação você precisará adicionar as seguintes variáveis de ambiente no arquivo .env na pasta backend:
-
-`DATABASE_URL="postgresql://root:password@db:5432/NgCashDB?schema=mySchema"`
-
-`JWT_SECRET = 'string_qualquer'`
-
 ## Para rodar a aplicação, siga os comandos
 
 Clone o repositório
